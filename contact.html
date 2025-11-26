@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us | JavaBro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact the JavaBro team for queries, suggestions, and collaborations via form or WhatsApp." />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-4">Contact Us</h1>
+    <p class="mb-6 text-sm text-gray-700">
+      Have a question, suggestion, or collaboration idea? Fill out the form below and we’ll get back to you.
+      Your message will be sent to us via <strong>WhatsApp</strong> for faster response.
+    </p>
+
+    <form id="contactForm" class="bg-white shadow rounded-lg p-6 space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium mb-1">Name</label>
+        <input id="name" type="text" required
+               class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:border-gray-400" />
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium mb-1">Email</label>
+        <input id="email" type="email" required
+               class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:border-gray-400" />
+      </div>
+
+      <div>
+        <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+        <input id="subject" type="text" required
+               class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:border-gray-400" />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium mb-1">Message</label>
+        <textarea id="message" rows="4" required
+                  class="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring focus:border-gray-400"></textarea>
+      </div>
+
+      <p class="text-xs text-gray-500">
+        By submitting this form, your details may be sent to us via WhatsApp.
+        Please avoid sharing sensitive information (like passwords, bank details, etc.).
+      </p>
+
+      <button type="submit"
+              class="w-full bg-gray-900 text-white text-sm font-semibold py-2 rounded hover:bg-gray-800 transition">
+        Send via WhatsApp
+      </button>
+    </form>
+  </main>
+
+  <footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full fixed bottom-0">
+    <div class="max-w-5xl mx-auto px-4 py-4 text-xs flex flex-col md:flex-row justify-between items-center gap-2">
+      <p>© <span id="yearSpan"></span> JavaBro. All rights reserved.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/about.html" class="hover:text-gray-300">About</a>
+        <a href="/privacy.html" class="hover:text-gray-300">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-gray-300">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("yearSpan").textContent = new Date().getFullYear();
+
+    const form = document.getElementById("contactForm");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !subject || !message) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      // ✅ Replace with your WhatsApp number (country code + number, no + sign)
+      const phoneNumber = "YOUR_WHATSAPP_NUMBER_HERE"; // e.g. "919876543210"
+
+      const text =
+        `New message from javabro.com%0A` +
+        `Name: ${encodeURIComponent(name)}%0A` +
+        `Email: ${encodeURIComponent(email)}%0A` +
+        `Subject: ${encodeURIComponent(subject)}%0A` +
+        `Message: ${encodeURIComponent(message)}`;
+
+      const url = `https://wa.me/${phoneNumber}?text=${text}`;
+
+      // Open WhatsApp (mobile app or web)
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>

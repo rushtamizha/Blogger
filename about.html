@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us | JavaBro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn more about JavaBro, a blog focused on Java, programming tutorials, coding tips, and career guidance for developers." />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header -->
+
+  <!-- Main -->
+  <main class="max-w-3xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-4">About JavaBro</h1>
+    <p class="mb-4">
+      Welcome to <strong>JavaBro</strong> (javabro.com) – your friendly space on the internet for
+      <strong>Java programming, coding tutorials, software development tips, and tech career guidance</strong>.
+    </p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">Our Mission</h2>
+    <p class="mb-4">
+      Our mission is to make programming easy to understand for students, beginners, and working professionals.
+      We share practical tutorials, real-world examples, and interview-focused concepts so you can level up your skills
+      in Java and related technologies.
+    </p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">What You’ll Find on JavaBro</h2>
+    <ul class="list-disc ml-6 space-y-2 mb-4">
+      <li>Step-by-step Java tutorials for beginners and intermediates</li>
+      <li>Code snippets, sample projects, and best practices</li>
+      <li>Guides on tools, frameworks, and libraries</li>
+      <li>Career tips, interview questions, and preparation strategies</li>
+      <li>Occasional content on other programming and tech topics</li>
+    </ul>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">How We Create Content</h2>
+    <p class="mb-4">
+      All content on JavaBro is created with care, researched from reliable sources, and tested wherever possible.
+      However, technology changes rapidly, so some information may become outdated over time. We encourage you to
+      double-check official documentation and let us know if you find anything that needs correction.
+    </p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">Monetization & Transparency</h2>
+    <p class="mb-4">
+      JavaBro may display <strong>ads (including Google AdSense)</strong> and use affiliate links to support the
+      maintenance and growth of the website. This does not influence our content quality or our opinions.
+    </p>
+
+    <h2 class="text-xl font-semibold mt-6 mb-2">Contact Us</h2>
+    <p class="mb-2">
+      If you have any questions, suggestions, or collaboration ideas, feel free to reach out through our
+      <a href="/contact.html" class="text-blue-600 hover:underline">Contact page</a>.
+    </p>
+    <p>We’re also reachable on WhatsApp through the contact form available on the Contact page.</p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-10 border-t bg-gray-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 py-4 text-xs flex flex-col md:flex-row justify-between items-center gap-2">
+      <p>© <span id="yearSpan"></span> JavaBro. All rights reserved.</p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/about.html" class="hover:text-gray-300">About</a>
+        <a href="/contact.html" class="hover:text-gray-300">Contact</a>
+        <a href="/privacy.html" class="hover:text-gray-300">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-gray-300">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("yearSpan").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

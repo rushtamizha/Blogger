@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Bro</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-slate-100 scroll-smooth font-stretch-110% min-h-screen flex flex-col ">
+
+<div class="max-w-5xl mx-auto p-3 w-full">
+
+  <div class="text-2xl font-bold mb-4"><img class="h-10" src='Logo.png' alt=""></div>
+
+  <!-- Search -->
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="Search blog..."
+    class="w-full  border  border-slate-300 rounded-lg px-4 py-2 mb-4"
+  />
+
+  <!-- Search Results Container -->
+  <div id="resultContainer" class="hidden mb-6 bg-white p-4 rounded-lg border-2 border-dashed border-green-200 bg-gradient-to-r from-green-50 to-green-100">
+    <h2 class="text-sm font-semibold mb-2">Search Results</h2>
+    <div id="resultList" class="grid gap-3"></div>
+  </div>
+
+  <!-- Main Blog List -->
+  <!-- First 2 big cards -->
+  <div id="blogList" class="grid md:grid-cols-2 gap-3 mb-4"></div>
+  <!-- Remaining small cards -->
+  <div id="blogLists" class="grid gap-3"></div>
+
+  <!-- Pagination -->
+  <div id="pagination" class="mt-4"></div>
+
+</div>
+
+<script>
+let blogs = [];
+
+// 🔹 TEMPORARY DATA (for dev). Later you can load from content.json
+blogs = [
+  {
+    title: "How to Start a Blog in 2025",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Step-by-step guide to launching your blog",
+    slug: "how-to-start-a-blog-2025"
+  },
+  {
+    title: "Best JavaScript Tricks",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Improve frontend development",
+    slug: "best-javascript-tricks"
+  },
+  {
+    title: "10 High-End AI Mirror Portrait Prompts for Fashionable Men",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Clean your digital life",
+    slug: "minimal-lifestyle"
+  },
+  // 👉 Duplicate / add more blogs to test pagination
+  {
+    title: "Blog 4 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description four",
+    slug: "blog-4-demo"
+  },
+  {
+    title: "Blog 5 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description five",
+    slug: "blog-5-demo"
+  },
+  {
+    title: "Blog 6 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description six",
+    slug: "blog-6-demo"
+  },
+  {
+    title: "Blog 7 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description seven",
+    slug: "blog-7-demo"
+  },
+  {
+    title: "Blog 8 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description eight",
+    slug: "blog-8-demo"
+  },
+  {
+    title: "Blog 9 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description nine",
+    slug: "blog-9-demo"
+  },
+  {
+    title: "Blog 10 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description ten",
+    slug: "blog-10-demo"
+  },
+  {
+    title: "Blog 11 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description eleven",
+    slug: "blog-11-demo"
+  },
+  {
+    title: "Blog 12 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description twelve",
+    slug: "blog-12-demo"
+  },
+  {
+    title: "Blog 13 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description thirteenDemo description thirteenDemo description thirteenDemo description thirteenDemo description thirteen",
+    slug: "blog-13-demo"
+  },
+  {
+    title: "Blog 14 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description fourteen",
+    slug: "blog-14-demo"
+  },
+  {
+    title: "Blog 15 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description fifteen",
+    slug: "blog-15-demo"
+  },
+  {
+    title: "Blog 16 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description sixteen",
+    slug: "blog-16-demo"
+  },
+  {
+    title: "Blog 17 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description seventeen",
+    slug: "blog-17-demo"
+  },
+  {
+    title: "Blog 18 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description eighteen",
+    slug: "blog-18-demo"
+  },
+  {
+    title: "Blog 19 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description nineteen",
+    slug: "blog-19-demo"
+  },
+  {
+    title: "Blog 20 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description twenty",
+    slug: "blog-20-demo"
+  },
+  {
+    title: "Blog 21 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description twenty-one",
+    slug: "blog-21-demo"
+  },{
+    title: "Blog 21 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description twenty-one",
+    slug: "blog-21-demo"
+  },{
+    title: "Blog 21 Demo",
+    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
+    description: "Demo description twenty-one",
+    slug: "blog-21-demo"
+  }
+];
+
+const blogList  = document.getElementById("blogList");   // big cards
+const blogLists = document.getElementById("blogLists");  // small cards
+const searchInput = document.getElementById("searchInput");
+const resultContainer = document.getElementById("resultContainer");
+const resultList = document.getElementById("resultList");
+const pagination = document.getElementById("pagination");
+
+const PER_PAGE = 20;
+let filteredBlogs = blogs;
+let currentPage = 1;
+let isSearching = false;
+
+// Big card layout (used for first 2)
+function renderBigBlogs(container, list) {
+  container.innerHTML = "";
+  list.forEach(blog => {
+    const html = `
+      <div class="blog-card cursor-pointer bg-white p-4 border rounded-lg hover:shadow-sm transition-all duration-200"
+           data-slug="${blog.slug}">
+        <img src="${blog.banner}" class="w-full h-40 object-cover rounded mb-3">
+        <h3 class="font-semibold text-lg mb-1 line-clamp-2">${blog.title}</h3>
+        <p class="text-xs text-slate-600 line-clamp-3">${blog.description}</p>
+      </div>
+    `;
+    container.innerHTML += html;
+  });
+}
+
+// Small card layout (used for all remaining + search results)
+function renderSmallBlogs(container, list) {
+  container.innerHTML = "";
+  list.forEach(blog => {
+    const html = `
+      <div class="blog-card cursor-pointer bg-white p-3 border rounded-lg hover:shadow-sm transition-all duration-150 flex gap-3"
+           data-slug="${blog.slug}">
+        <img src="${blog.banner}" class="w-24 h-16 object-cover rounded">
+        <div>
+          <h3 class="font-semibold text-sm mb-1 line-clamp-2">${blog.title}</h3>
+          <p class="text-[11px] text-slate-600 line-clamp-2">${blog.description}</p>
+        </div>
+      </div>
+    `;
+    container.innerHTML += html;
+  });
+}
+
+// Pagination controls
+function renderPagination(totalPages, currentPage) {
+  if (totalPages <= 1) {
+    pagination.innerHTML = "";
+    return;
+  }
+
+  let html = `<div class="flex items-center justify-center gap-2 text-sm">`;
+
+  html += `
+    <button
+      class="px-3 py-1 rounded border ${currentPage === 1 ? 'opacity-40 cursor-default' : 'hover:bg-slate-200'}"
+      data-action="prev"
+      ${currentPage === 1 ? 'disabled' : ''}
+    >
+      Prev
+    </button>
+  `;
+
+  for (let p = 1; p <= totalPages; p++) {
+    html += `
+      <button
+        class="px-3 py-1 rounded border ${p === currentPage ? 'bg-slate-900 text-gray-400' : 'hover:bg-slate-200'}"
+        data-page="${p}"
+      >
+        ${p}
+      </button>
+    `;
+  }
+
+  html += `
+    <button
+      class="px-3 py-1 rounded border ${currentPage === totalPages ? 'opacity-40 cursor-default' : 'hover:bg-gray-200'}"
+      data-action="next"
+      ${currentPage === totalPages ? 'disabled' : ''}
+    >
+      Next
+    </button>
+  `;
+
+  html += `</div>`;
+  pagination.innerHTML = html;
+}
+
+// Update view based on search / pagination
+function updateView() {
+  const total = filteredBlogs.length;
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  const start = (currentPage - 1) * PER_PAGE;
+  const pageItems = filteredBlogs.slice(start, start + PER_PAGE);
+
+  if (!total) {
+    resultContainer.classList.remove("hidden");
+    blogList.classList.add("hidden");
+    blogLists.classList.add("hidden");
+    resultList.innerHTML = `<p class="text-sm text-slate-500">No results found</p>`;
+    pagination.innerHTML = "";
+    return;
+  }
+
+  if (isSearching) {
+    // For search → show only small cards in result container
+    resultContainer.classList.remove("hidden");
+    blogList.classList.add("hidden");
+    blogLists.classList.add("hidden");
+    renderSmallBlogs(resultList, pageItems);
+  } else {
+    resultContainer.classList.add("hidden");
+    blogList.classList.remove("hidden");
+    blogLists.classList.remove("hidden");
+
+    const firstTwo  = pageItems.slice(0, 2);
+    const remaining = pageItems.slice(2);
+
+    renderBigBlogs(blogList, firstTwo);
+    renderSmallBlogs(blogLists, remaining);
+  }
+
+  renderPagination(totalPages, currentPage);
+}
+
+// Search handler
+searchInput.addEventListener("input", () => {
+  const q = searchInput.value.toLowerCase().trim();
+
+  if (!q) {
+    isSearching = false;
+    filteredBlogs = blogs;
+    currentPage = 1;
+    updateView();
+    return;
+  }
+
+  isSearching = true;
+  filteredBlogs = blogs.filter(
+    b =>
+      b.title.toLowerCase().includes(q) ||
+      b.description.toLowerCase().includes(q)
+  );
+  currentPage = 1;
+  updateView();
+});
+
+// Pagination click handler
+pagination.addEventListener("click", (e) => {
+  const btn = e.target.closest("button");
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+  const page = btn.dataset.page ? parseInt(btn.dataset.page, 10) : null;
+
+  const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / PER_PAGE));
+
+  if (action === "prev" && currentPage > 1) {
+    currentPage--;
+    updateView();
+  } else if (action === "next" && currentPage < totalPages) {
+    currentPage++;
+    updateView();
+  } else if (page) {
+    currentPage = page;
+    updateView();
+  }
+});
+
+// Click → open slug.html
+document.addEventListener("click", e => {
+  const card = e.target.closest(".blog-card");
+  if (!card) return;
+
+  const slug = card.dataset.slug;
+  if (slug) {
+    window.location.href = slug + ".html";
+  }
+});
+
+// Initial render
+filteredBlogs = blogs;
+updateView();
+</script>
+    <footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full">
+    <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+      <p class="text-center md:text-left">
+        © <span id="yearSpan"></span> JavaBro. All rights reserved.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#top" class="hover:text-slate-300 transition flex items-center gap-1">
+          <span>Back to top</span>
+          <span class="text-[10px]">▲</span>
+        </a>
+        <a href="contact.html" class="hover:text-slate-300 transition">
+          Contact
+        </a>
+        <a href="about.html" class="hover:text-slate-300 transition">
+          About
+        </a>
+        <a href="terms.html" class="hover:text-slate-300 transition">
+          Terms and Conditions
+        </a>
+        <a href="privacy.html" class="hover:text-slate-300 transition">
+          Privacy Policy
+        </a>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  // existing script code here...
+
+  // add this at the END of your existing script, or in a new <script> tag:
+  const yearSpan = document.getElementById("yearSpan");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+</script>
+
+
+</body>
+</html>
