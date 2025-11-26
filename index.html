@@ -12,14 +12,17 @@
 
 <div class="max-w-5xl mx-auto p-3 w-full">
 
-  <div class="text-2xl font-bold mb-4"><img class="h-10" src='public/Logo.png' alt=""></div>
+  <div class="text-2xl font-bold mb-4">
+    <!-- Logo: keep Logo.png next to index.html -->
+    <img class="h-10" src="/Logo.png" alt="JavaBro Logo">
+  </div>
 
   <!-- Search -->
   <input
     id="searchInput"
     type="text"
     placeholder="Search blog..."
-    class="w-full  border  border-slate-300 rounded-lg px-4 py-2 mb-4"
+    class="w-full border border-slate-300 rounded-lg px-4 py-2 mb-4"
   />
 
   <!-- Search Results Container -->
@@ -29,16 +32,14 @@
   </div>
 
   <!-- Main Blog List -->
-  <!-- First 2 big cards -->
   <div id="blogList" class="grid md:grid-cols-2 gap-3 mb-4"></div>
-  <!-- Remaining small cards -->
   <div id="blogLists" class="grid gap-3"></div>
 
-  <!-- Pagination -->
   <div id="pagination" class="mt-4"></div>
 
 </div>
-   <script>
+
+<script>
 let blogs = [];
 let filteredBlogs = [];
 let currentPage = 1;
@@ -52,10 +53,14 @@ const resultContainer = document.getElementById("resultContainer");
 const resultList = document.getElementById("resultList");
 const pagination = document.getElementById("pagination");
 
-// ✅ Fetch blogs from content.json
+// ✅ Fetch blogs from content.json (must be next to index.html)
 fetch("content.json")
   .then(res => res.json())
   .then(data => {
+    if (!Array.isArray(data)) {
+      console.error("content.json must be an array of blogs");
+      return;
+    }
     blogs = data;
     filteredBlogs = blogs;
     updateView();
@@ -71,7 +76,7 @@ function renderBigBlogs(container, list) {
     const html = `
       <div class="blog-card cursor-pointer bg-white p-4 border rounded-lg hover:shadow-sm transition-all duration-200"
            data-slug="${blog.slug}">
-        <img src="${blog.banner}" class="w-full h-40 object-cover rounded mb-3">
+        <img src="${blog.banner}" class="w-full h-40 object-cover rounded mb-3" alt="${blog.title}">
         <h3 class="font-semibold text-lg mb-1 line-clamp-2">${blog.title}</h3>
         <p class="text-xs text-slate-600 line-clamp-3">${blog.description}</p>
       </div>
@@ -87,7 +92,7 @@ function renderSmallBlogs(container, list) {
     const html = `
       <div class="blog-card cursor-pointer bg-white p-3 border rounded-lg hover:shadow-sm transition-all duration-150 flex gap-3"
            data-slug="${blog.slug}">
-        <img src="${blog.banner}" class="w-24 h-16 object-cover rounded">
+        <img src="${blog.banner}" class="w-24 h-16 object-cover rounded" alt="${blog.title}">
         <div>
           <h3 class="font-semibold text-sm mb-1 line-clamp-2">${blog.title}</h3>
           <p class="text-[11px] text-slate-600 line-clamp-2">${blog.description}</p>
@@ -229,43 +234,39 @@ document.addEventListener("click", e => {
 });
 </script>
 
-    <footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full">
-    <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
-      <p class="text-center md:text-left">
-        © <span id="yearSpan"></span> JavaBro. All rights reserved.
-      </p>
+<footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full">
+  <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+    <p class="text-center md:text-left">
+      © <span id="yearSpan"></span> JavaBro. All rights reserved.
+    </p>
 
-      <div class="flex flex-wrap gap-4">
-        <a href="#top" class="hover:text-slate-300 transition flex items-center gap-1">
-          <span>Back to top</span>
-          <span class="text-[10px]">▲</span>
-        </a>
-        <a href="contact.html" class="hover:text-slate-300 transition">
-          Contact
-        </a>
-        <a href="about.html" class="hover:text-slate-300 transition">
-          About
-        </a>
-        <a href="terms.html" class="hover:text-slate-300 transition">
-          Terms and Conditions
-        </a>
-        <a href="privacy.html" class="hover:text-slate-300 transition">
-          Privacy Policy
-        </a>
-      </div>
+    <div class="flex flex-wrap gap-4">
+      <a href="#top" class="hover:text-slate-300 transition flex items-center gap-1">
+        <span>Back to top</span>
+        <span class="text-[10px]">▲</span>
+      </a>
+      <a href="contact.html" class="hover:text-slate-300 transition">
+        Contact
+      </a>
+      <a href="about.html" class="hover:text-slate-300 transition">
+        About
+      </a>
+      <a href="terms.html" class="hover:text-slate-300 transition">
+        Terms and Conditions
+      </a>
+      <a href="privacy.html" class="hover:text-slate-300 transition">
+        Privacy Policy
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
 
 <script>
-  // existing script code here...
-
-  // add this at the END of your existing script, or in a new <script> tag:
   const yearSpan = document.getElementById("yearSpan");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
 </script>
-
 
 </body>
 </html>
