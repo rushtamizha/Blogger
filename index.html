@@ -38,164 +38,33 @@
   <div id="pagination" class="mt-4"></div>
 
 </div>
-
-<script>
+   <script>
 let blogs = [];
+let filteredBlogs = [];
+let currentPage = 1;
+const PER_PAGE = 20;
+let isSearching = false;
 
-// 🔹 TEMPORARY DATA (for dev). Later you can load from content.json
-blogs = [
-  {
-    title: "How to Start a Blog in 2025",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Step-by-step guide to launching your blog",
-    slug: "how-to-start-a-blog-2025"
-  },
-  {
-    title: "Best JavaScript Tricks",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Improve frontend development",
-    slug: "best-javascript-tricks"
-  },
-  {
-    title: "10 High-End AI Mirror Portrait Prompts for Fashionable Men",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Clean your digital life",
-    slug: "minimal-lifestyle"
-  },
-  // 👉 Duplicate / add more blogs to test pagination
-  {
-    title: "Blog 4 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description four",
-    slug: "blog-4-demo"
-  },
-  {
-    title: "Blog 5 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description five",
-    slug: "blog-5-demo"
-  },
-  {
-    title: "Blog 6 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description six",
-    slug: "blog-6-demo"
-  },
-  {
-    title: "Blog 7 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description seven",
-    slug: "blog-7-demo"
-  },
-  {
-    title: "Blog 8 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description eight",
-    slug: "blog-8-demo"
-  },
-  {
-    title: "Blog 9 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description nine",
-    slug: "blog-9-demo"
-  },
-  {
-    title: "Blog 10 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description ten",
-    slug: "blog-10-demo"
-  },
-  {
-    title: "Blog 11 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description eleven",
-    slug: "blog-11-demo"
-  },
-  {
-    title: "Blog 12 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description twelve",
-    slug: "blog-12-demo"
-  },
-  {
-    title: "Blog 13 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description thirteenDemo description thirteenDemo description thirteenDemo description thirteenDemo description thirteen",
-    slug: "blog-13-demo"
-  },
-  {
-    title: "Blog 14 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description fourteen",
-    slug: "blog-14-demo"
-  },
-  {
-    title: "Blog 15 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description fifteen",
-    slug: "blog-15-demo"
-  },
-  {
-    title: "Blog 16 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description sixteen",
-    slug: "blog-16-demo"
-  },
-  {
-    title: "Blog 17 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description seventeen",
-    slug: "blog-17-demo"
-  },
-  {
-    title: "Blog 18 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description eighteen",
-    slug: "blog-18-demo"
-  },
-  {
-    title: "Blog 19 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description nineteen",
-    slug: "blog-19-demo"
-  },
-  {
-    title: "Blog 20 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description twenty",
-    slug: "blog-20-demo"
-  },
-  {
-    title: "Blog 21 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description twenty-one",
-    slug: "blog-21-demo"
-  },{
-    title: "Blog 21 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description twenty-one",
-    slug: "blog-21-demo"
-  },{
-    title: "Blog 21 Demo",
-    banner: "https://cdn.dribbble.com/userupload/15597399/file/original-00b6061587864c39e9d58f70a3621ded.jpg?resize=1024x768&vertical=center",
-    description: "Demo description twenty-one",
-    slug: "blog-21-demo"
-  }
-];
-
-const blogList  = document.getElementById("blogList");   // big cards
-const blogLists = document.getElementById("blogLists");  // small cards
+const blogList  = document.getElementById("blogList");
+const blogLists = document.getElementById("blogLists");
 const searchInput = document.getElementById("searchInput");
 const resultContainer = document.getElementById("resultContainer");
 const resultList = document.getElementById("resultList");
 const pagination = document.getElementById("pagination");
 
-const PER_PAGE = 20;
-let filteredBlogs = blogs;
-let currentPage = 1;
-let isSearching = false;
+// ✅ Fetch blogs from content.json
+fetch("content.json")
+  .then(res => res.json())
+  .then(data => {
+    blogs = data;
+    filteredBlogs = blogs;
+    updateView();
+  })
+  .catch(err => {
+    console.error("JSON load error:", err);
+  });
 
-// Big card layout (used for first 2)
+// ✅ Big card layout
 function renderBigBlogs(container, list) {
   container.innerHTML = "";
   list.forEach(blog => {
@@ -211,7 +80,7 @@ function renderBigBlogs(container, list) {
   });
 }
 
-// Small card layout (used for all remaining + search results)
+// ✅ Small card layout
 function renderSmallBlogs(container, list) {
   container.innerHTML = "";
   list.forEach(blog => {
@@ -229,7 +98,7 @@ function renderSmallBlogs(container, list) {
   });
 }
 
-// Pagination controls
+// ✅ Pagination UI
 function renderPagination(totalPages, currentPage) {
   if (totalPages <= 1) {
     pagination.innerHTML = "";
@@ -239,32 +108,24 @@ function renderPagination(totalPages, currentPage) {
   let html = `<div class="flex items-center justify-center gap-2 text-sm">`;
 
   html += `
-    <button
-      class="px-3 py-1 rounded border ${currentPage === 1 ? 'opacity-40 cursor-default' : 'hover:bg-slate-200'}"
-      data-action="prev"
-      ${currentPage === 1 ? 'disabled' : ''}
-    >
+    <button class="px-3 py-1 rounded border ${currentPage === 1 ? 'opacity-40 cursor-default' : 'hover:bg-slate-200'}"
+      data-action="prev" ${currentPage === 1 ? 'disabled' : ''}>
       Prev
     </button>
   `;
 
   for (let p = 1; p <= totalPages; p++) {
     html += `
-      <button
-        class="px-3 py-1 rounded border ${p === currentPage ? 'bg-slate-900 text-gray-400' : 'hover:bg-slate-200'}"
-        data-page="${p}"
-      >
+      <button class="px-3 py-1 rounded border ${p === currentPage ? 'bg-slate-900 text-white' : 'hover:bg-slate-200'}"
+        data-page="${p}">
         ${p}
       </button>
     `;
   }
 
   html += `
-    <button
-      class="px-3 py-1 rounded border ${currentPage === totalPages ? 'opacity-40 cursor-default' : 'hover:bg-gray-200'}"
-      data-action="next"
-      ${currentPage === totalPages ? 'disabled' : ''}
-    >
+    <button class="px-3 py-1 rounded border ${currentPage === totalPages ? 'opacity-40 cursor-default' : 'hover:bg-slate-200'}"
+      data-action="next" ${currentPage === totalPages ? 'disabled' : ''}>
       Next
     </button>
   `;
@@ -273,7 +134,7 @@ function renderPagination(totalPages, currentPage) {
   pagination.innerHTML = html;
 }
 
-// Update view based on search / pagination
+// ✅ Main render logic
 function updateView() {
   const total = filteredBlogs.length;
   const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
@@ -293,7 +154,6 @@ function updateView() {
   }
 
   if (isSearching) {
-    // For search → show only small cards in result container
     resultContainer.classList.remove("hidden");
     blogList.classList.add("hidden");
     blogLists.classList.add("hidden");
@@ -313,7 +173,7 @@ function updateView() {
   renderPagination(totalPages, currentPage);
 }
 
-// Search handler
+// ✅ Search
 searchInput.addEventListener("input", () => {
   const q = searchInput.value.toLowerCase().trim();
 
@@ -335,7 +195,7 @@ searchInput.addEventListener("input", () => {
   updateView();
 });
 
-// Pagination click handler
+// ✅ Pagination click handler
 pagination.addEventListener("click", (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
@@ -357,7 +217,7 @@ pagination.addEventListener("click", (e) => {
   }
 });
 
-// Click → open slug.html
+// ✅ Click to open blog page
 document.addEventListener("click", e => {
   const card = e.target.closest(".blog-card");
   if (!card) return;
@@ -367,11 +227,8 @@ document.addEventListener("click", e => {
     window.location.href = slug + ".html";
   }
 });
-
-// Initial render
-filteredBlogs = blogs;
-updateView();
 </script>
+
     <footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full">
     <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
       <p class="text-center md:text-left">
