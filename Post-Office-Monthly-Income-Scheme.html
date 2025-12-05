@@ -1,292 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Post Office Monthly Income Scheme (POMIS) — Complete Guide + Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMIS 2025 – Post Office Monthly Income Scheme + Calculator</title>
 
-  <!-- Tailwind CSS (cdn) -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-  <style>
-    /* Small custom styles */
-    .card { box-shadow: 0 8px 30px rgba(2,6,23,0.06); }
-    .accent { color: #0f172a; } /* slate-900 */
-    .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .faq-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
-    .range-val { min-width: 5rem; text-align: right; display:inline-block; }
-  </style>
+<style>
+.card { box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
+.faq-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+</style>
 </head>
-<body class="bg-gradient-to-b from-slate-50 to-white text-slate-800 antialiased">
 
-  <main class="max-w-6xl mx-auto p-6">
+<body class="bg-slate-50 text-slate-800">
 
-    <!-- Header -->
-    <header class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-      <div>
-        <h1 class="text-3xl font-extrabold leading-tight accent">Post Office Monthly Income Scheme (POMIS)</h1>
-        <p class="text-sm text-slate-600 mt-1">Complete 2025 guide — features, limits, rules, FAQs and a live MIS income calculator.</p>
-      </div>
-    </header>
-    <img class="w-full" src="https://static.beebom.com/wp-content/uploads/2023/08/This-image-depicts-a-post-office-that-has-been-3D-printed-and-inaugurated-in-Bengaluru.jpg?w=750&quality=75" alt="">
+<div class="max-w-5xl mx-auto p-6">
 
-    <!-- Top grid: Calculator + summary -->
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+<h1 class="text-3xl font-bold mb-3">
+  Post Office Monthly Income Scheme (POMIS) – Complete Guide 2025
+</h1>
+<p class="text-slate-600 text-sm mb-5">
+  The Post Office Monthly Income Scheme (POMIS) is a low-risk, government-backed savings scheme
+  offering guaranteed monthly interest for 5 years. Ideal for retirees and conservative investors.
+</p>
+<img class="w-full p-3" src="https://static.beebom.com/wp-content/uploads/2023/08/This-image-depicts-a-post-office-that-has-been-3D-printed-and-inaugurated-in-Bengaluru.jpg?w=750&quality=75" alt="">
 
-      <!-- Calculator -->
-      <article class="card bg-white p-5 rounded-lg lg:col-span-2">
-        <h2 class="text-xl font-semibold mb-3">POMIS Calculator — Monthly Income</h2>
-        <p class="text-sm text-slate-600 mb-4">Use the sliders or input boxes. Calculator shows monthly payout, annual income and total for chosen months. (POMIS pays interest monthly on principal — interest does not compound.)</p>
+<!-- ============================================= -->
+<!-- 🔢 CALCULATOR SECTION                         -->
+<!-- ============================================= -->
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
-          <div>
-            <label class="text-xs text-slate-600">Investment (₹)</label>
-            <input id="amountInput" type="number" min="1000" step="500" value="100000"
-                   class="w-full border rounded px-3 py-2 text-sm" />
-            <input id="amountRange" type="range" min="1000" max="1500000" step="500" value="100000" class="w-full mt-2">
-            <div class="text-xs text-slate-500 mt-1">Min ₹1000 • Max ₹15,00,000 </div>
-          </div>
+<div class="card bg-white p-5 rounded-lg mb-8">
+  <h2 class="text-xl font-semibold mb-3">POMIS Monthly Income Calculator (2025)</h2>
+  <p class="text-sm text-slate-600 mb-3">Adjust the amount, interest rate, and months to calculate your monthly payout.</p>
 
-          <div>
-            <label class="text-xs text-slate-600">Interest Rate (%)</label>
-            <input id="rateInput" type="number" min="1" max="10" step="0.1" value="6.6"
-                   class="w-full border rounded px-3 py-2 text-sm" />
-            <input id="rateRange" type="range" min="1" max="10" step="0.1" value="7.4" class="w-full mt-2">
-            <div class="text-xs text-slate-500 mt-1">Example / government rate</div>
-          </div>
+  <div class="grid md:grid-cols-3 gap-4">
 
-          <div>
-            <label class="text-xs text-slate-600">Tenure (Months)</label>
-            <input id="monthsInput" type="number" min="12" max="60" step="1" value="60"
-                   class="w-full border rounded px-3 py-2 text-sm" />
-            <input id="monthsRange" type="range" min="12" max="60" step="1" value="60" class="w-full mt-2">
-            <div class="text-xs text-slate-500 mt-1">POMIS default tenure = 60 months</div>
-          </div>
-        </div>
+    <!-- Amount -->
+    <div>
+      <label class="text-xs">Investment Amount (₹)</label>
+      <input id="amountInput" type="number" value="100000" min="1000" max="1500000" class="w-full border rounded px-3 py-2 text-sm mb-1">
+      <input id="amountRange" type="range" min="1000" max="1500000" value="100000" step="1000" class="w-full">
+    </div>
 
-        <div class="flex items-center gap-3 mt-4">
-          <button id="calcBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded shadow-sm text-sm font-medium">Calculate</button>
-          <button id="resetBtn" class="bg-white border px-4 py-2 rounded text-sm hover:bg-slate-50">Reset</button>
-          <div class="ml-auto text-sm text-slate-600">Monthly interest = principal × (rate/100)/12</div>
-        </div>
+    <!-- Rate -->
+    <div>
+      <label class="text-xs">Interest Rate (%)</label>
+      <input id="rateInput" type="number" value="7.4" min="1" max="10" step="0.1" class="w-full border rounded px-3 py-2 text-sm mb-1">
+      <input id="rateRange" type="range" min="1" max="10" value="7.4" step="0.1" class="w-full">
+    </div>
 
-        <div id="calcResult" class="mt-5 bg-gradient-to-r from-indigo-50 to-white border rounded p-4 text-slate-800">
-          <div class="text-sm text-slate-500">Result will appear here</div>
-        </div>
-      </article>
+    <!-- Months -->
+    <div>
+      <label class="text-xs">Tenure (Months)</label>
+      <input id="monthsInput" type="number" value="60" min="12" max="60" class="w-full border rounded px-3 py-2 text-sm mb-1">
+      <input id="monthsRange" type="range" min="12" max="60" value="60" step="1" class="w-full">
+    </div>
 
-      <!-- Quick stats -->
-      <aside class="card bg-white p-4 rounded-lg">
-        <h3 class="font-semibold mb-3">Quick Facts</h3>
-        <dl class="text-sm space-y-2">
-          <div class="flex justify-between"><dt class="text-slate-600">Maturity Period</dt><dd class="font-medium">5 years</dd></div>
-          <div class="flex justify-between"><dt class="text-slate-600">Min Investment</dt><dd class="font-medium">₹1,500</dd></div>
-          <div class="flex justify-between"><dt class="text-slate-600">Max (Single)</dt><dd class="font-medium">₹4,50,000</dd></div>
-          <div class="flex justify-between"><dt class="text-slate-600">Max (Joint)</dt><dd class="font-medium">₹9,00,000</dd></div>
-          <div class="flex justify-between"><dt class="text-slate-600">Minors</dt><dd class="font-medium">₹3,00,000 (guardian)</dd></div>
-        </dl>
+  </div>
 
-        <hr class="my-3" />
-        <p class="text-xs text-slate-600">Interest is taxable and does not get TDS at source. Post Office does not provide tax exemption under Section 80C for POMIS.</p>
-      </aside>
-    </section>
+  <button id="calcBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white w-full mt-4 py-2 rounded">
+    Calculate
+  </button>
 
-    <!-- Main content -->
-    <article class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+  <div id="calcResult" class="mt-4 bg-indigo-50 p-4 rounded text-sm">
+    Result will appear here.
+  </div>
+</div>
 
-      <div class="lg:col-span-2 space-y-5">
 
-        <!-- Details -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">Details</h2>
-          <p class="text-sm text-slate-700 leading-relaxed">
-            Post Office Monthly Income Scheme (POMIS) is an investment scheme recognized and validated by the Ministry of Finance.
-            It provides a monthly interest payout for a period of 5 years and is popular among conservative investors and senior citizens seeking steady income.
-            Minimum deposit is ₹1,500. Interest is paid monthly by the post office.
-          </p>
+<!-- ============================================= -->
+<!-- 📌 MAIN CONTENT                               -->
+<!-- ============================================= -->
 
-          <div class="mt-4 grid md:grid-cols-2 gap-3 text-sm">
-            <div class="bg-slate-50 p-3 rounded border">
-              <div class="text-slate-500">Maturity Period</div>
-              <div class="font-medium mt-1">5 years</div>
-            </div>
-            <div class="bg-slate-50 p-3 rounded border">
-              <div class="text-slate-500">Number of holders</div>
-              <div class="font-medium mt-1">1 to 3 individuals</div>
-            </div>
-            <div class="bg-slate-50 p-3 rounded border">
-              <div class="text-slate-500">Nomination</div>
-              <div class="font-medium mt-1">Allowed; nominee gets benefits on investor's demise</div>
-            </div>
-            <div class="bg-slate-50 p-3 rounded border">
-              <div class="text-slate-500">Transfer</div>
-              <div class="font-medium mt-1">Transfer between post offices across India</div>
-            </div>
-          </div>
-        </section>
+<h2 class="text-2xl font-semibold mb-2">1. Key Statistics (2025)</h2>
+<table class="w-full border text-sm mb-5">
+  <tr class="bg-slate-100">
+    <th class="p-2 border">Feature</th>
+    <th class="p-2 border">Details</th>
+  </tr>
+  <tr><td class="p-2 border">Current Interest Rate</td><td class="p-2 border">7.4% per annum</td></tr>
+  <tr><td class="p-2 border">Maturity Period</td><td class="p-2 border">5 Years</td></tr>
+  <tr><td class="p-2 border">Risk Level</td><td class="p-2 border">Low (Govt-backed)</td></tr>
+  <tr><td class="p-2 border">Minimum Investment</td><td class="p-2 border">₹1,000</td></tr>
+  <tr><td class="p-2 border">Maximum Investment</td><td class="p-2 border">₹9L (Single) / ₹15L (Joint)</td></tr>
+</table>
 
-        <!-- Features -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">Features of POMIS</h2>
-          <ul class="list-disc ml-5 text-sm space-y-1 text-slate-700">
-            <li>Fixed monthly interest payout for the 5-year tenure.</li>
-            <li>No compounding on unpaid interest — interest paid monthly only.</li>
-            <li>Joint accounts allowed (up to 3 adults).</li>
-            <li>Older accounts (before 1-Dec-2011) may have bonus benefits (5%).</li>
-            <li>Low-risk — backed by Government of India.</li>
-          </ul>
-        </section>
 
-        <!-- Benefits -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">Benefits</h2>
-          <ul class="grid gap-2 md:grid-cols-2 text-sm">
-            <li class="flex gap-2 items-start"><span class="text-green-600 font-bold">✔</span> Capital protection (Govt-backed)</li>
-            <li class="flex gap-2 items-start"><span class="text-green-600 font-bold">✔</span> Low-risk stable income</li>
-            <li class="flex gap-2 items-start"><span class="text-green-600 font-bold">✔</span> Affordable minimum amount</li>
-            <li class="flex gap-2 items-start"><span class="text-green-600 font-bold">✔</span> Joint account facility</li>
-            <li class="flex gap-2 items-start"><span class="text-green-600 font-bold">✔</span> Easy deposit/withdrawal at Post Office</li>
-            <li class="flex gap-2 items-start"><span class="text-green-600 font-bold">✔</span> Suited for risk-averse & senior citizens</li>
-          </ul>
-        </section>
+<h2 class="text-2xl font-semibold mb-2">2. Investment Limits</h2>
+<ul class="list-disc ml-6 text-sm mb-5">
+  <li>Single Account: Max ₹9 Lakhs</li>
+  <li>Joint Account (up to 3 adults): Max ₹15 Lakhs</li>
+  <li>Minor Account: Max ₹3 Lakhs (guardian-operated)</li>
+</ul>
 
-        <!-- Rates & Investment -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">Current Interest Rates & Investment Limits</h2>
 
-          <div class="grid md:grid-cols-2 gap-4 text-sm">
-            <div>
-              <h3 class="font-medium mb-2">Interest Rates (example)</h3>
-              <table class="w-full text-sm border">
-                <tr class="bg-slate-100"><th class="p-2 border">Duration</th><th class="p-2 border">Interest</th></tr>
-                <tr><td class="p-2 border">1 Year</td><td class="p-2 border">5.50%</td></tr>
-                <tr><td class="p-2 border">2 Years</td><td class="p-2 border">5.50%</td></tr>
-                <tr><td class="p-2 border">3 Years</td><td class="p-2 border">5.50%</td></tr>
-                <tr><td class="p-2 border">5 Years (POMIS)</td><td class="p-2 border">6.60% - 7.60% (example)</td></tr>
-              </table>
-            </div>
+<h2 class="text-2xl font-semibold mb-2">3. Interest Rate & Payouts</h2>
+<p class="text-sm text-slate-700 mb-3">
+  The current POMIS interest rate is <strong>7.4% per annum</strong>, fixed for the entire 5-year term.
+  Interest is paid monthly, and does not compound.
+</p>
 
-            <div>
-              <h3 class="font-medium mb-2">Investment Limits</h3>
-              <ul class="text-sm list-disc ml-5">
-                <li><strong>Single Account:</strong> Min ₹1,500 • Max ₹4,50,000</li>
-                <li><strong>Joint Account:</strong> Min ₹1,500 • Max ₹9,00,000</li>
-                <li><strong>Minor Account:</strong> Min ₹1,500 • Max ₹3,00,000</li>
-              </ul>
-            </div>
-          </div>
+<table class="w-full border text-sm mb-5">
+  <tr class="bg-slate-100">
+    <th class="p-2 border">Investment</th>
+    <th class="p-2 border">Monthly Income</th>
+    <th class="p-2 border">Annual Income</th>
+  </tr>
+  <tr><td class="p-2 border">₹1,00,000</td><td class="p-2 border">₹617</td><td class="p-2 border">₹7,400</td></tr>
+  <tr><td class="p-2 border">₹5,00,000</td><td class="p-2 border">₹3,083</td><td class="p-2 border">₹37,000</td></tr>
+  <tr><td class="p-2 border">₹9,00,000</td><td class="p-2 border">₹5,550</td><td class="p-2 border">₹66,600</td></tr>
+  <tr><td class="p-2 border">₹15,00,000</td><td class="p-2 border">₹9,250</td><td class="p-2 border">₹1,11,000</td></tr>
+</table>
 
-          <div class="mt-4 text-sm text-slate-600">Note: Rates change from time to time — always verify with your Post Office or official India Post website.</div>
-        </section>
 
-        <!-- Notes + Example -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">Notes & Example</h2>
-          <p class="text-sm text-slate-700 leading-relaxed">
-            Example: If you invest ₹1,00,000 for 5 years at 6.60% p.a., monthly interest payout ≈ ₹550.
-          </p>
-          <p class="text-sm text-slate-600 mt-3">POMIS interest for senior citizens often follows the prevailing scheme rate. The lock-in period is a minimum of 5 years and withdrawals before maturity attract penalties.</p>
-        </section>
+<h2 class="text-2xl font-semibold mb-2">4. Important Rules</h2>
+<ul class="list-disc ml-6 text-sm mb-5">
+  <li>No withdrawal allowed before 1 year</li>
+  <li>1–3 years: 2% penalty on principal</li>
+  <li>3–5 years: 1% penalty on principal</li>
+</ul>
 
-        <!-- How to Apply -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">How to Open an Account (Offline)</h2>
-          <ol class="list-decimal ml-6 text-sm space-y-2 text-slate-700">
-            <li>Open a Post Office Savings Account if you don't have one.</li>
-            <li>Obtain and fill the POMIS application form (download from India Post or collect at the Post Office).</li>
-            <li>Submit self-attested copies of KYC documents and carry originals for verification.</li>
-            <li>Mention nominee details (name, DOB, mobile).</li>
-            <li>Deposit the initial amount (min ₹1,500) via cash or cheque.</li>
-          </ol>
-          <div class="mt-3 text-xs text-slate-500">Form link example: <a href="https://www.indiapost.gov.in/VAS/DOP_PDFFiles/form/Accountopening.pdf" target="_blank" class="text-indigo-600">India Post POMIS Form</a></div>
-        </section>
 
-        <!-- Documents -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-2">Documents Required</h2>
-          <ul class="list-disc ml-5 text-sm text-slate-700">
-            <li>Proof of Identity — Aadhaar / Passport / Voter ID / Driving Licence</li>
-            <li>Proof of Address — Utility bill or government-issued ID</li>
-            <li>Passport size photographs</li>
-          </ul>
-        </section>
+<h2 class="text-2xl font-semibold mb-2">5. Taxation</h2>
+<ul class="list-disc ml-6 text-sm mb-5">
+  <li>Interest is fully taxable</li>
+  <li>No TDS deducted by Post Office</li>
+  <li>No Section 80C benefits</li>
+</ul>
 
-        <!-- FAQ -->
-        <section class="card bg-white p-5 rounded-lg">
-          <h2 class="text-xl font-semibold mb-3">Frequently Asked Questions</h2>
 
-          <div class="space-y-2">
-            <button class="faq-btn w-full flex justify-between items-center p-3 bg-slate-50 rounded" aria-expanded="false">
-              <span class="text-sm text-slate-800 text-left">How can I withdraw money after tenure?</span>
-              <svg class="chev w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="faq-panel p-3 text-sm text-slate-600 hidden">After maturity, visit the post office with your account passbook and ID; submit a withdrawal request to receive principal & final interest. If you leave funds unclaimed, post office will retain per rules; contact the branch for exact steps.</div>
+<h2 class="text-2xl font-semibold mb-2">6. Eligibility</h2>
+<ul class="list-disc ml-6 text-sm mb-5">
+  <li>Must be a Resident Indian</li>
+  <li>Must be 18+ years old</li>
+  <li>Minors (10+) can open account in their own name</li>
+  <li>Guardians can open for minors or dependents</li>
+</ul>
 
-            <button class="faq-btn w-full flex justify-between items-center p-3 bg-slate-50 rounded" aria-expanded="false">
-              <span class="text-sm text-slate-800 text-left">Can I transfer my POMIS account?</span>
-              <svg class="chev w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="faq-panel p-3 text-sm text-slate-600 hidden">Yes — POMIS accounts can be transferred from one post office to another anywhere in India. Visit both branches or ask your home branch for transfer process details.</div>
 
-            <button class="faq-btn w-full flex justify-between items-center p-3 bg-slate-50 rounded" aria-expanded="false">
-              <span class="text-sm text-slate-800 text-left">Is there any tax deduction at source?</span>
-              <svg class="chev w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="faq-panel p-3 text-sm text-slate-600 hidden">No TDS is deducted by the Post Office on POMIS interest. However, the interest is taxable and must be declared in your ITR.</div>
+<h2 class="text-2xl font-semibold mb-2">7. Pros & Cons</h2>
+<table class="w-full border text-sm mb-5">
+  <tr class="bg-slate-100">
+    <th class="p-2 border">Pros</th>
+    <th class="p-2 border">Cons</th>
+  </tr>
 
-            <button class="faq-btn w-full flex justify-between items-center p-3 bg-slate-50 rounded" aria-expanded="false">
-              <span class="text-sm text-slate-800 text-left">Can a senior citizen invest?</span>
-              <svg class="chev w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            </button>
-            <div class="faq-panel p-3 text-sm text-slate-600 hidden">Yes — POMIS suits senior citizens seeking monthly income; they can open single or joint accounts and nominate beneficiaries.</div>
-          </div>
-        </section>
+  <tr><td class="p-2 border">✔ Guaranteed monthly income</td><td class="p-2 border">❌ Fully taxable interest</td></tr>
+  <tr><td class="p-2 border">✔ Capital protection</td><td class="p-2 border">❌ No compounding benefit</td></tr>
+  <tr><td class="p-2 border">✔ High limits (₹9L/₹15L)</td><td class="p-2 border">❌ 5-year lock-in</td></tr>
+  <tr><td class="p-2 border">✔ Transferable between post offices</td><td class="p-2 border">❌ Fixed returns may not beat inflation</td></tr>
+</table>
 
-      </div>
 
-      <!-- Sidebar highlights -->
-      <aside class="space-y-5">
+<h2 class="text-2xl font-semibold mb-2">8. How to Open an Account</h2>
+<ol class="list-decimal ml-6 text-sm mb-5">
+  <li>Visit your nearest Post Office</li>
+  <li>Fill the POMIS account opening form</li>
+  <li>Submit KYC documents (Aadhaar, PAN, Photos)</li>
+  <li>Add nominee details</li>
+  <li>Deposit amount via cash or cheque</li>
+</ol>
 
-        <div class="card bg-white p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">Penalty for Premature Withdrawal</h3>
-          <ul class="list-disc ml-5 text-sm text-slate-700">
-            <li>0–1 Year: No withdrawal allowed</li>
-            <li>1–3 Years: Allowed with 2% deduction from principal</li>
-            <li>3–5 Years: Allowed with 1% deduction from principal</li>
-          </ul>
-        </div>
 
-        <div class="card bg-white p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">Who is eligible?</h3>
-          <p class="text-sm text-slate-700">Resident Indians (NRIs excluded). Applicants must be 18+. Guardians can open for minors aged 10+.</p>
-        </div>
+<h2 class="text-2xl font-semibold mb-2">9. Documents Required</h2>
+<ul class="list-disc ml-6 text-sm mb-5">
+  <li>Identity Proof (Aadhaar / PAN / Voter ID)</li>
+  <li>Address Proof</li>
+  <li>Passport-size photos</li>
+</ul>
 
-        <div class="card bg-white p-4 rounded-lg">
-          <h3 class="font-semibold mb-2">Quick Example</h3>
-          <p class="text-sm text-slate-700">If you invest ₹1,00,000 at 6.6% p.a., monthly income ≈ ₹550 (₹100,000 × 6.6% ÷ 12).</p>
-        </div>
+<!-- FAQ -->
+<h2 class="text-2xl font-semibold mb-3">FAQs</h2>
 
-      </aside>
+<div class="space-y-2">
 
-    </article>
+  <button class="faq-btn w-full flex justify-between items-center p-3 bg-white border rounded" aria-expanded="false">
+    <span class="text-sm text-slate-800 text-left">How can I withdraw money after 5 years?</span>
+    <span class="chev transform transition-transform">▼</span>
+  </button>
+  <div class="faq-panel hidden text-sm p-3 bg-slate-50 rounded border">
+    Visit the post office with passbook & ID and submit withdrawal form.
+  </div>
 
-    <!-- Pros & Cons table (each row per item) -->
-    <section class="card bg-white p-5 rounded-lg mb-6">
-      <h2 class="text-xl font-semibold mb-3">Pros & Cons</h2>
-      <table class="w-full border text-sm">
-        <thead>
-          <tr class="bg-slate-100"><th class="p-2 border">Pros</th><th class="p-2 border">Cons</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="p-2 border">✔ Guaranteed monthly income</td><td class="p-2 border">❌ Interest is fully taxable</td></tr>
-          <tr><td class="p-2 border">✔ Capital protection (Govt-backed)</td><td class="p-2 border">❌ No compounding benefit</td></tr>
-          <tr><td class="p-2 border">✔ High deposit limit (₹4.5L single / ₹9L joint)</td><td class="p-2 border">❌ 5-year lock-in period</td></tr>
-          <tr><td class="p-2 border">✔ Ideal for senior citizens & risk-averse investors</td><td class="p-2 border">❌ Returns may not beat inflation</td></tr>
-        </tbody>
-      </table>
-    </section>
+  <button class="faq-btn w-full flex justify-between items-center p-3 bg-white border rounded" aria-expanded="false">
+    <span class="text-sm text-slate-800 text-left">Can I transfer my POMIS account?</span>
+    <span class="chev transform transition-transform">▼</span>
+  </button>
+  <div class="faq-panel hidden text-sm p-3 bg-slate-50 rounded border">
+    Yes, POMIS accounts can be transferred between any two post offices in India.
+  </div>
 
-    <footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full">
+  <button class="faq-btn w-full flex justify-between items-center p-3 bg-white border rounded" aria-expanded="false">
+    <span class="text-sm text-slate-800 text-left">Is the interest taxable?</span>
+    <span class="chev transform transition-transform">▼</span>
+  </button>
+  <div class="faq-panel hidden text-sm p-3 bg-slate-50 rounded border">
+    Interest is 100% taxable. No TDS is deducted.
+  </div>
+
+</div>
+</div>
+<footer class="mt-auto border-t bg-gradient-to-b from-gray-800 to-gray-900 text-white w-full">
   <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
     <p class="text-center md:text-left">
       © <span id="year"></span> JavaBro. All rights reserved.
@@ -312,102 +227,71 @@
     </div>
   </div>
 </footer>
-    
 
-  </main>
 
-  <!-- JS -->
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // DOM refs
-    const amountInput = document.getElementById('amountInput');
-    const amountRange = document.getElementById('amountRange');
-    const rateInput = document.getElementById('rateInput');
-    const rateRange = document.getElementById('rateRange');
-    const monthsInput = document.getElementById('monthsInput');
-    const monthsRange = document.getElementById('monthsRange');
-    const calcBtn = document.getElementById('calcBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const calcResult = document.getElementById('calcResult');
+<script>
+// Sync sliders & inputs
+function bindSync(inputEl, rangeEl) {
+  inputEl.addEventListener("input", () => rangeEl.value = inputEl.value);
+  rangeEl.addEventListener("input", () => inputEl.value = rangeEl.value);
+}
 
-    // sync inputs and ranges
-    function syncAmount(v) { amountInput.value = v; amountRange.value = v; }
-    function syncRate(v) { rateInput.value = v; rateRange.value = v; }
-    function syncMonths(v) { monthsInput.value = v; monthsRange.value = v; }
+bindSync(amountInput, amountRange);
+bindSync(rateInput, rateRange);
+bindSync(monthsInput, monthsRange);
 
-    amountInput.addEventListener('input', (e) => { let v = Number(e.target.value); if (isNaN(v) || v < 1500) v = 1500; if (v > 450000) v = 450000; syncAmount(v); });
-    amountRange.addEventListener('input', (e) => syncAmount(e.target.value));
+function fmt(n) {
+  return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(n);
+}
 
-    rateInput.addEventListener('input', (e) => { let v = Number(e.target.value); if (isNaN(v)) v = 6.6; syncRate(v); });
-    rateRange.addEventListener('input', (e) => syncRate(e.target.value));
+function calculate() {
+  const P = Number(amountInput.value);
+  const rate = Number(rateInput.value) / 100;
+  const months = Number(monthsInput.value);
 
-    monthsInput.addEventListener('input', (e) => { let v = Number(e.target.value); if (isNaN(v) || v < 12) v = 12; if (v > 60) v = 60; syncMonths(v); });
-    monthsRange.addEventListener('input', (e) => syncMonths(e.target.value));
+  const monthly = (P * rate) / 12;
+  const annual = P * rate;
+  const total = monthly * months;
 
-    // formatter
-    function fmt(n) {
-      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(n);
+  calcResult.innerHTML = `
+    <div class="grid md:grid-cols-3 gap-3">
+      <div class="p-3 bg-white rounded border text-center">
+        <div class="text-xs text-slate-500">Monthly Income</div>
+        <div class="text-xl font-semibold">${fmt(monthly)}</div>
+      </div>
+      <div class="p-3 bg-white rounded border text-center">
+        <div class="text-xs text-slate-500">Annual Income</div>
+        <div class="text-xl font-semibold">${fmt(annual)}</div>
+      </div>
+      <div class="p-3 bg-white rounded border text-center">
+        <div class="text-xs text-slate-500">Total for ${months} Months</div>
+        <div class="text-xl font-semibold">${fmt(total)}</div>
+      </div>
+    </div>
+  `;
+}
+
+calcBtn.addEventListener("click", calculate);
+calculate();
+
+// FAQ Accordion
+document.querySelectorAll(".faq-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const panel = btn.nextElementSibling;
+    const expand = btn.getAttribute("aria-expanded") === "true";
+
+    document.querySelectorAll(".faq-btn").forEach(b => b.setAttribute("aria-expanded","false"));
+    document.querySelectorAll(".faq-panel").forEach(p => p.classList.add("hidden"));
+
+    if (!expand) {
+      btn.setAttribute("aria-expanded","true");
+      panel.classList.remove("hidden");
     }
+  });
+});
+</script>
 
-    // Calc function: MIS pays monthly interest on principal, no compounding
-    function calculate() {
-      const P = Number(amountInput.value);
-      const rate = Number(rateInput.value) / 100; // annual fraction
-      const months = Number(monthsInput.value);
-
-      const monthlyPayout = (P * rate) / 12;
-      const annualIncome = P * rate;
-      const totalForPeriod = monthlyPayout * months;
-
-      calcResult.innerHTML = `
-        <div class="grid gap-2 md:grid-cols-3">
-          <div class="p-3 bg-white rounded border text-center">
-            <div class="text-xs text-slate-500">Monthly Income</div>
-            <div class="text-lg font-semibold mt-1">${fmt(monthlyPayout)}</div>
-          </div>
-          <div class="p-3 bg-white rounded border text-center">
-            <div class="text-xs text-slate-500">Annual Income</div>
-            <div class="text-lg font-semibold mt-1">${fmt(annualIncome)}</div>
-          </div>
-          <div class="p-3 bg-white rounded border text-center">
-            <div class="text-xs text-slate-500">Total for ${months} months</div>
-            <div class="text-lg font-semibold mt-1">${fmt(totalForPeriod)}</div>
-          </div>
-        </div>
-        <div class="mt-3 text-xs text-slate-600">Monthly Payout formula: <code>principal × (rate / 100) / 12</code>. Interest does not compound in POMIS.</div>
-      `;
-    }
-
-    // initial calc
-    calculate();
-
-    calcBtn.addEventListener('click', calculate);
-    resetBtn.addEventListener('click', () => {
-      syncAmount(100000); syncRate(6.6); syncMonths(60); calculate();
-    });
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        // hide all
-        document.querySelectorAll('.faq-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
-        document.querySelectorAll('.faq-panel').forEach(p => p.classList.add('hidden'));
-        if (!expanded) {
-          btn.setAttribute('aria-expanded', 'true');
-          const panel = btn.nextElementSibling;
-          if (panel) panel.classList.remove('hidden');
-        }
-      });
-    });
-
-    // Allow Enter key on inputs to calculate
-    [amountInput, rateInput, monthsInput].forEach(el => {
-      el.addEventListener('keydown', (e) => { if (e.key === 'Enter') calculate(); });
-    });
-
-  </script>
 </body>
 </html>
+
