@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Final Voter List Check 2025 – How to Check Your Name Online</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Check your name in the Final Voter List 2025 online. Step-by-step guide to verify voter ID details and download voter slip from the official government website." />
+  <meta name="keywords" content="final voter list check, voter list 2025, voter id check online, election voter list india" />
+
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
+
+  <!-- MAIN CONTENT -->
+  <main class="max-w-4xl mx-auto p-5 flex-1">
+
+    <h1 class="text-3xl font-bold mb-3">
+      Final Voter List Check 2025 – How to Check Your Name Online
+    </h1>
+
+    <p class="text-sm text-slate-600 mb-5">
+      The Election Commission of India (ECI) releases the Final Voter List before every election.
+      Citizens must verify their name to ensure they are eligible to vote. This guide explains
+      how to check your name in the voter list online easily.
+    </p>
+
+    <!-- INFO CARD -->
+    <div class="bg-white border rounded-lg p-4 mb-6">
+      <h2 class="text-xl font-semibold mb-2">Why Checking the Final Voter List Is Important</h2>
+      <ul class="list-disc ml-5 text-sm text-slate-700 space-y-1">
+        <li>Confirms your eligibility to vote</li>
+        <li>Ensures correct spelling of name and address</li>
+        <li>Avoids last-minute issues on election day</li>
+        <li>Helps download voter slip easily</li>
+      </ul>
+    </div>
+
+    <!-- HOW TO CHECK -->
+    <h2 class="text-2xl font-semibold mb-3">How to Check Your Name in the Final Voter List</h2>
+
+    <ol class="list-decimal ml-6 text-sm text-slate-700 space-y-2 mb-6">
+      <li>Visit the official Election Commission voter portal</li>
+      <li>Select <strong>Search by EPIC Number</strong> or <strong>Search by Personal Details</strong></li>
+      <li>Enter required details such as name, date of birth, or voter ID</li>
+      <li>Submit the form to view your voter status</li>
+      <li>Download or print your voter slip if available</li>
+    </ol>
+
+    <!-- CTA BUTTON -->
+    <div class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white rounded-lg p-5 mb-6 text-center">
+      <h3 class="text-lg font-semibold mb-2">Check Your Name in the Final Voter List</h3>
+      <p class="text-sm mb-4">
+        Click the button below to open the official government website.
+      </p>
+      <button
+        id="checkVoterBtn"
+        class="bg-white text-indigo-700 font-semibold px-6 py-2 rounded hover:bg-slate-100 transition"
+      >
+        Check Final Voter List
+      </button>
+    </div>
+
+    <!-- ELIGIBILITY -->
+    <h2 class="text-2xl font-semibold mb-3">Eligibility to Be Included in Voter List</h2>
+    <ul class="list-disc ml-6 text-sm text-slate-700 space-y-1 mb-6">
+      <li>Must be a citizen of India</li>
+      <li>Must be 18 years or older</li>
+      <li>Should be registered in the electoral roll</li>
+      <li>Must have valid address proof</li>
+    </ul>
+
+    <!-- FAQ -->
+    <h2 class="text-2xl font-semibold mb-3">Frequently Asked Questions</h2>
+
+    <div class="space-y-3 text-sm">
+      <div class="bg-white p-3 rounded border">
+        <strong>What if my name is missing from the final voter list?</strong>
+        <p class="text-slate-600 mt-1">
+          You can apply for correction or inclusion through the ECI portal or contact your local Booth Level Officer (BLO).
+        </p>
+      </div>
+
+      <div class="bg-white p-3 rounded border">
+        <strong>Can I check voter list using mobile?</strong>
+        <p class="text-slate-600 mt-1">
+          Yes, the official voter portal works on mobile phones and tablets.
+        </p>
+      </div>
+
+      <div class="bg-white p-3 rounded border">
+        <strong>Is checking voter list free?</strong>
+        <p class="text-slate-600 mt-1">
+          Yes. The service is completely free and provided by the Government of India.
+        </p>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="mt-6 text-xs text-slate-500">
+      Disclaimer: This page is for informational purposes only. We are not affiliated with the Election Commission of India.
+      Users are redirected to the official government website for verification.
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t bg-white text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto p-4 flex flex-col md:flex-row justify-between gap-2">
+      <p>© <span id="year"></span> JavaBro. All rights reserved.</p>
+      <p>Information source: Election Commission of India</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Year
+    const y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
+
+    // Redirect button
+    document.getElementById("checkVoterBtn").addEventListener("click", () => {
+      // Official ECI voter portal
+      window.open(
+        "https://electoralsearch.eci.gov.in/",
+        "_blank"
+      );
+    });
+  </script>
+
+</body>
+</html>
